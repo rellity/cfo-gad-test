@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-purple-900;
+  }
+}
+
+@layer components {
+  .backdrop-blur-md {
+    backdrop-filter: blur(12px);
+  }
+}
