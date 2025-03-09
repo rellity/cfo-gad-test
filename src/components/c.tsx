@@ -45,14 +45,14 @@ export default function CarouselDemo({ slides }: SlideshowProps) {
                                 style={{
                                     transform: `
                                         translateX(${offset * 60}%) 
-                                        scale(${index === current ? 1.2 : 0.8})
+                                        scale(${index === current ? 1.0 : 0.8})
                                         translateZ(${index === current ? 0 : -100}px)
                                     `,
                                     zIndex: index === current ? 30 : 10,
                                     opacity: Math.abs(offset) > 2 ? 0 : 1 - (Math.abs(offset) * 0.2),
                                 }}
                             >
-                                <Card className="h-[400px] bg-white rounded-none shadow-lg p-4">
+                                <Card className="h-[450px] bg-white rounded-none shadow-lg p-4">
                                     <img
                                         src={slide.image}
                                         alt={slide.title}
