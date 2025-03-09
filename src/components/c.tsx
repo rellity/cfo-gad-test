@@ -27,7 +27,7 @@ export default function CarouselDemo({ slides }: SlideshowProps) {
     }
 
     return (
-        <div className="relative max-w-7xl mx-auto h-[300px] md:h-[500px]">
+        <div className="relative max-w-7xl mx-auto h-[300px] md:h-[500px] max-lg:w-[300px]">
             <div className="relative h-full overflow-visible flex items-center justify-center">
                 <div className="flex items-center justify-center w-full">
                     {slides.map((slide, index) => {
@@ -41,7 +41,7 @@ export default function CarouselDemo({ slides }: SlideshowProps) {
                         return (
                             <div
                                 key={index}
-                                className="absolute transition-all duration-500 w-[300px] md:w-[400px]"
+                                className="absolute transition-all duration-500 w-[300px] md:w-[400px] overflow-y-visible"
                                 style={{
                                     transform: `
                                         translateX(${offset * 60}%) 
@@ -52,7 +52,7 @@ export default function CarouselDemo({ slides }: SlideshowProps) {
                                     opacity: Math.abs(offset) > 2 ? 0 : 1 - (Math.abs(offset) * 0.2),
                                 }}
                             >
-                                <Card className="h-[480px] bg-white rounded-none shadow-lg p-4">
+                                <Card className="h-[400px] bg-white rounded-none shadow-lg p-4">
                                     <img
                                         src={slide.image}
                                         alt={slide.title}
@@ -62,17 +62,20 @@ export default function CarouselDemo({ slides }: SlideshowProps) {
                                         <h2 className="text-lg font-bold">{slide.title}</h2>
                                         <p className="text-sm line-clamp-2">{slide.description}</p>
                                     </CardContent>
+
+                                    <Button variant="default" className="self-start bg-blue-400 rounded-2xl items-center">Read More <ChevronRight className="ring-1 rounded-full" /></Button>
                                 </Card>
                             </div>
                         )
                     })}
                 </div>
+
             </div>
 
             <Button
                 variant="ghost"
                 size="icon"
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70 z-40"
+                className="absolute right-[200px] max-lg:right-[280px] top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70 z-40"
                 onClick={prevSlide}
             >
                 <ChevronLeft className="h-6 w-6" />
@@ -81,22 +84,11 @@ export default function CarouselDemo({ slides }: SlideshowProps) {
             <Button
                 variant="ghost"
                 size="icon"
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70 z-40"
+                className="absolute left-[200px] max-lg:left-[280px] top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70 z-40"
                 onClick={nextSlide}
             >
                 <ChevronRight className="h-6 w-6" />
             </Button>
-
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-40 ">
-                {slides.map((_, index) => (
-                    <button
-                        key={index}
-                        onClick={() => setCurrent(index)}
-                        className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-colors 
-                            ${current === index ? "bg-white" : "bg-white/40"}`}
-                    />
-                ))}
-            </div>
         </div>
     )
 }
